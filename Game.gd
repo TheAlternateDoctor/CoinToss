@@ -21,7 +21,8 @@ var lockInput = false
 var holding = false
 var lastPos:Vector2
 
-var effectsName = ["Aucun effet","Swing Léger","Swing","Swing Lourd","Onbeat seulement","Offbeat seulement","MORE COWBELL","*Rires*"]
+var effectsName = ["","Light Swing","Swing","Heavy Swing","Onbeat only","Offbeat only","Cowbells","*Laughter*"]
+var effectsWeight = [10,10,10,30,15,15,30]
 var rng = RandomNumberGenerator.new()
 
 signal throw(step)
@@ -53,16 +54,27 @@ func _process(_delta):
 
 func generateEffect():
 	if $EffectQuestion.pressed:
-		var randomEffect = rng.randi_range(50,100)
-		if randomEffect < 80: # Swing
-			randomEffect -=50
-			if randomEffect < 5: return 1 # Light Swing
-			if randomEffect >= 5 and randomEffect <10: return 3 # Heavy Swing
-			if randomEffect >= 10: return 2 # Normal Swing
-		if randomEffect >=80 and randomEffect < 90: return 4# Onbeat
-		if randomEffect >= 90 and randomEffect <95: return 7# Laughtrack
-		if randomEffect >= 95 and randomEffect <97: return 5# Offbeat
-		if randomEffect >= 97: return 6# Cowbell
+#		var randomEffect = rng.randi_range(50,100)
+#		if randomEffect < 80: # Swing
+#			randomEffect -=50
+#			if randomEffect < 5: return 1 # Light Swing
+#			if randomEffect >= 5 and randomEffect <10: return 3 # Heavy Swing
+#			if randomEffect >= 10: return 2 # Normal Swing
+#		if randomEffect >=80 and randomEffect < 90: return 4# Onbeat
+#		if randomEffect >= 90 and randomEffect <95: return 7# Laughtrack
+#		if randomEffect >= 95 and randomEffect <97: return 5# Offbeat
+#		if randomEffect >= 97: return 6# Cowbell
+		var totalWeight = 0
+		for weight in effectsWeight:
+			totalWeight += weight
+		var randomEffect = rng.randi_range(0,totalWeight)
+		var actualWeight = 0
+		print(randomEffect)
+		for number in range(0,effectsWeight.size()):
+			actualWeight += effectsWeight[number]
+			if actualWeight>=randomEffect:
+				print(number)
+				return number+1
 	else:
 		return 0
 
@@ -113,6 +125,10 @@ func handleInput(type):
 			if checkedInput:
 				emit_signal("catch",false)
 				gotInput = false
+	elif thrown and type == "flick":
+		if checkedInput:
+			checkedInput = false
+		$Hand.play("throw")
 
 func checkInput():
 	catchTime = OS.get_ticks_msec()
