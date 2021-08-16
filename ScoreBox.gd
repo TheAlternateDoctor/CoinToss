@@ -7,6 +7,8 @@ extends Sprite
 var score = 0
 var record = 5
 
+signal new_record(record)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -33,6 +35,7 @@ func _on_Game_catch(success):
 		if score > record:
 			$Record.text = "Record: "+str(score)
 			record = score
+			emit_signal("new_record", record)
 
 
 func _on_Animations_animation_finished(anim_name):
@@ -41,3 +44,8 @@ func _on_Animations_animation_finished(anim_name):
 		$Tenth.visible = false
 		$Units.position = Vector2(0,0)
 		$Units.animation = "0"
+
+
+func _on_Game_update_record(record):
+	if record>5:
+		$Record.text = "Record: "+str(record)

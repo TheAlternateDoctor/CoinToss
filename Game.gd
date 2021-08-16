@@ -28,10 +28,17 @@ var rng = RandomNumberGenerator.new()
 signal throw(step)
 signal catch(success)
 signal catch_fail
+signal update_record(record)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.seed = OS.get_unix_time()
+	var save_game = File.new()
+	if not save_game.file_exists("user://record.save"):
+		return # Error! We don't have a save to load.
+	save_game.open("user://record.save", File.READ)
+	emit_signal("update_record",save_game.get_8())
+	save_game.close()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,16 +61,6 @@ func _process(_delta):
 
 func generateEffect():
 	if $EffectQuestion.pressed:
-#		var randomEffect = rng.randi_range(50,100)
-#		if randomEffect < 80: # Swing
-#			randomEffect -=50
-#			if randomEffect < 5: return 1 # Light Swing
-#			if randomEffect >= 5 and randomEffect <10: return 3 # Heavy Swing
-#			if randomEffect >= 10: return 2 # Normal Swing
-#		if randomEffect >=80 and randomEffect < 90: return 4# Onbeat
-#		if randomEffect >= 90 and randomEffect <95: return 7# Laughtrack
-#		if randomEffect >= 95 and randomEffect <97: return 5# Offbeat
-#		if randomEffect >= 97: return 6# Cowbell
 		var totalWeight = 0
 		for weight in effectsWeight:
 			totalWeight += weight
@@ -163,3 +160,9 @@ func _on_EffectQuestion_toggled(button_pressed):
 		effect = generateEffect()
 	else:
 		effect = 0
+
+func _on_ScoreBox_new_record(record):
+	var save_game = File.new()
+	save_game.open("user://record.save", File.WRITE)
+	save_game.store_8(record)
+	save_game.close()
