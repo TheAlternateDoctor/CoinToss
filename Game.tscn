@@ -72,6 +72,16 @@ animations = [ {
 "name": "search",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "throw",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 14 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "catch",
+"speed": 60.0
+}, {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "startCatch",
@@ -81,16 +91,6 @@ animations = [ {
 "loop": true,
 "name": "failCatch",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 14 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 15 ) ],
-"loop": false,
-"name": "catch",
-"speed": 60.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 12 ) ],
-"loop": false,
-"name": "throw",
-"speed": 60.0
 } ]
 
 [sub_resource type="Animation" id=2]
@@ -186,19 +186,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 32 ) ],
-"loop": true,
-"name": "4",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 34 ) ],
 "loop": true,
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 28 ) ],
+"frames": [ ExtResource( 32 ) ],
 "loop": true,
-"name": "9",
+"name": "4",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 31 ) ],
@@ -206,9 +201,14 @@ animations = [ {
 "name": "7",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 26 ) ],
+"frames": [ ExtResource( 27 ) ],
 "loop": true,
-"name": "6",
+"name": "8",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "9",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 30 ) ],
@@ -216,9 +216,9 @@ animations = [ {
 "name": "5",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 27 ) ],
+"frames": [ ExtResource( 26 ) ],
 "loop": true,
-"name": "8",
+"name": "6",
 "speed": 5.0
 } ]
 
@@ -241,19 +241,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 45 ) ],
-"loop": true,
-"name": "4",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 42 ) ],
 "loop": true,
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 40 ) ],
+"frames": [ ExtResource( 45 ) ],
 "loop": true,
-"name": "9",
+"name": "4",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 50 ) ],
@@ -261,9 +256,14 @@ animations = [ {
 "name": "7",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 49 ) ],
+"frames": [ ExtResource( 48 ) ],
 "loop": true,
-"name": "6",
+"name": "8",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 40 ) ],
+"loop": true,
+"name": "9",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 46 ) ],
@@ -271,9 +271,9 @@ animations = [ {
 "name": "5",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 48 ) ],
+"frames": [ ExtResource( 49 ) ],
 "loop": true,
-"name": "8",
+"name": "6",
 "speed": 5.0
 } ]
 
@@ -426,12 +426,12 @@ text = "Effects?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="catch" from="." to="Screen" method="_on_Game_catch"]
 [connection signal="catch" from="." to="Catch" method="_on_Game_catch"]
 [connection signal="catch" from="." to="ScoreBox" method="_on_Game_catch"]
+[connection signal="catch" from="." to="Screen" method="_on_Game_catch"]
 [connection signal="catch" from="." to="Hand" method="_on_Game_catch"]
-[connection signal="catch_fail" from="." to="CoinFail" method="_on_Game_catch_fail"]
 [connection signal="catch_fail" from="." to="Catch" method="_on_Game_catch_fail"]
+[connection signal="catch_fail" from="." to="CoinFail" method="_on_Game_catch_fail"]
 [connection signal="catch_fail" from="." to="Hand" method="_on_Game_catch_fail"]
 [connection signal="throw" from="." to="Screen" method="_on_Game_throw"]
 [connection signal="throw" from="." to="Hand" method="_on_Game_throw"]

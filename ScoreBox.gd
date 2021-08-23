@@ -48,4 +48,5 @@ func _on_Animations_animation_finished(anim_name):
 
 func _on_Game_update_record(record):
 	if record>5:
+		self.record = record
 		$Record.text = "Record: "+str(record)
