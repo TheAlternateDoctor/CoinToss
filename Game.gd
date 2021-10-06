@@ -76,22 +76,23 @@ func generateEffect():
 		return 0
 
 func _input(event):
-	if event is InputEventScreenTouch:
-		if not holding and thrown:
-			handleInput("touch")
+	if not lockInput:
+		if event is InputEventScreenTouch:
+			if not holding and thrown:
+				handleInput("touch")
+				lastPos = event.position
 			lastPos = event.position
-		lastPos = event.position
-		if holding:
-			holding = false
-		else:
-			holding = true
-	if event is InputEventScreenDrag:
-		var firstPos = lastPos
-		lastPos = event.position
-		var travelDistance = firstPos.y - lastPos.y
-		print(str(travelDistance))
-		if travelDistance > 20:
-			handleInput("flick")
+			if holding:
+				holding = false
+			else:
+				holding = true
+		if event is InputEventScreenDrag:
+			var firstPos = lastPos
+			lastPos = event.position
+			var travelDistance = firstPos.y - lastPos.y
+			print(str(travelDistance))
+			if travelDistance > 20:
+				handleInput("flick")
 
 func _unhandled_input(event):
 	if Input.is_key_pressed(KEY_SPACE) and not lockInput and not event.is_echo():

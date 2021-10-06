@@ -7,6 +7,8 @@ extends AnimatedSprite
 #Base Woosh pos: -44 -100
 #Catch Woosh pos: -59 -99
 
+var thrown = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -24,10 +26,12 @@ func catchCoin():
 
 func _on_Game_catch(success):
 	if success:
+		thrown = false
 		animation = "startCatch"
 		drawTrail()
 		yield(get_tree().create_timer(0.1), "timeout")
-		animation = "catch"
+		if not thrown:
+			animation = "catch"
 	else:
 		animation = "failCatch"
 		$Animations.playback_speed = 16
@@ -39,17 +43,18 @@ func drawTrail():
 	
 	$Impact.position = Vector2(-76,-30)
 	$Impact.visible = true
-	yield(get_tree().create_timer(0.02), "timeout")
+	yield(get_tree().create_timer(0.05), "timeout")
 	$Impact.visible = false
 	$Woosh.visible = false
 
 func _on_Game_throw(_step):
+	thrown = true
 	$Woosh.position = Vector2(-44,-100)
 	$Woosh.visible = true
 	
 	$Impact.position = Vector2(-56,-39)
 	$Impact.visible = true
-	yield(get_tree().create_timer(0.02), "timeout")
+	yield(get_tree().create_timer(0.05), "timeout")
 	$Impact.visible = false
 	$Woosh.visible = false
 
