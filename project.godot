@@ -28,10 +28,9 @@ settings/stdout/print_fps=true
 
 window/size/width=192
 window/size/height=256
-window/size/resizable=false
-window/size/always_on_top=true
 window/size/test_width=192
 window/size/test_height=256
+window/energy_saving/keep_screen_on=false
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep_width"
@@ -42,5 +41,12 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
+quality/intended_usage/framebuffer_allocation=1
+quality/intended_usage/framebuffer_allocation.mobile=1
+quality/2d/use_pixel_snap=true
+quality/filters/anisotropic_filter_level=16
+quality/filters/use_nearest_mipmap_filter=true
+quality/subsurface_scattering/quality=2
 environment/default_clear_color=Color( 0.972549, 0.972549, 0.25098, 1 )
+quality/filters/msaa=4
 environment/default_environment="res://default_env.tres"

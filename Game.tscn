@@ -158,14 +158,14 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "3",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "3",
 "speed": 5.0
 } ]
 
@@ -181,11 +181,6 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 33 ) ],
-"loop": true,
-"name": "3",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 34 ) ],
 "loop": true,
 "name": "1",
@@ -196,19 +191,9 @@ animations = [ {
 "name": "4",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 31 ) ],
+"frames": [ ExtResource( 33 ) ],
 "loop": true,
-"name": "7",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 27 ) ],
-"loop": true,
-"name": "8",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 28 ) ],
-"loop": true,
-"name": "9",
+"name": "3",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 30 ) ],
@@ -216,9 +201,24 @@ animations = [ {
 "name": "5",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "7",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 26 ) ],
 "loop": true,
 "name": "6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": true,
+"name": "8",
 "speed": 5.0
 } ]
 
@@ -236,11 +236,6 @@ animations = [ {
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 47 ) ],
-"loop": true,
-"name": "3",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 42 ) ],
 "loop": true,
 "name": "1",
@@ -251,19 +246,9 @@ animations = [ {
 "name": "4",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 50 ) ],
+"frames": [ ExtResource( 47 ) ],
 "loop": true,
-"name": "7",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 48 ) ],
-"loop": true,
-"name": "8",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 40 ) ],
-"loop": true,
-"name": "9",
+"name": "3",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 46 ) ],
@@ -271,9 +256,24 @@ animations = [ {
 "name": "5",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 50 ) ],
+"loop": true,
+"name": "7",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 49 ) ],
 "loop": true,
 "name": "6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 40 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 48 ) ],
+"loop": true,
+"name": "8",
 "speed": 5.0
 } ]
 
@@ -407,7 +407,7 @@ __meta__ = {
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( 0.707123, 511.945 )
 color = Color( 0.811765, 0.588235, 0, 1 )
-polygon = PoolVector2Array( -4.16833, -256.07, 198.828, -255.611, 206.642, -215.19, 219.971, -80.7856, 99.1922, -97.737, -18.9379, -87.6721 )
+polygon = PoolVector2Array( -407.119, -251.763, 1483.81, -252.865, 1672.88, 2724.24, 792.881, 2692.24, -407.119, 2724.24, -375.119, 132.237 )
 
 [node name="EffectQuestion" type="CheckBox" parent="."]
 margin_right = 24.0
@@ -426,13 +426,25 @@ text = "Effects?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="catch" from="." to="Catch" method="_on_Game_catch"]
-[connection signal="catch" from="." to="ScoreBox" method="_on_Game_catch"]
+
+[node name="Debug" type="Label" parent="."]
+visible = false
+margin_left = 145.497
+margin_top = 237.601
+margin_right = 185.497
+margin_bottom = 251.601
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Debug"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="catch" from="." to="Screen" method="_on_Game_catch"]
+[connection signal="catch" from="." to="ScoreBox" method="_on_Game_catch"]
 [connection signal="catch" from="." to="Hand" method="_on_Game_catch"]
-[connection signal="catch_fail" from="." to="Catch" method="_on_Game_catch_fail"]
+[connection signal="catch" from="." to="Catch" method="_on_Game_catch"]
 [connection signal="catch_fail" from="." to="CoinFail" method="_on_Game_catch_fail"]
 [connection signal="catch_fail" from="." to="Hand" method="_on_Game_catch_fail"]
+[connection signal="catch_fail" from="." to="Catch" method="_on_Game_catch_fail"]
 [connection signal="throw" from="." to="Screen" method="_on_Game_throw"]
 [connection signal="throw" from="." to="Hand" method="_on_Game_throw"]
 [connection signal="update_record" from="." to="ScoreBox" method="_on_Game_update_record"]
