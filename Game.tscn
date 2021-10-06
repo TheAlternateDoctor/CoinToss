@@ -132,7 +132,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 88.3344, -0.25, 0, 0.25, 0, 69.6144, -0.33, 9.65558, 0.06, -9.20855, 60, -0.22, 1.22972, 0.25, 0 ),
+"points": PoolRealArray( 88.3344, -0.25, 0, 0.25, 0, 69.6144, -0.33, 9.65558, 0.06, -9.20855, 60.5612, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5, 1 )
 }
 tracks/1/type = "bezier"
@@ -142,7 +142,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 156.583, -0.25, 0, 0.25, 0, 130.404, -0.25, 0, 0.25, 0, 267.404, -0.23, -96, 0.25, 0 ),
+"points": PoolRealArray( 156.583, -0.25, 0, 0.25, 0, 130.404, -0.25, 0, 0.25, 0, 274.7, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.4, 1 )
 }
 
@@ -327,8 +327,7 @@ catch_cheer = ExtResource( 4 )
 fail = ExtResource( 5 )
 
 [node name="CoinFail" type="Sprite" parent="."]
-visible = false
-position = Vector2( 60.9744, 267.404 )
+position = Vector2( 60.5612, 274.7 )
 rotation = 6.28319
 texture = ExtResource( 53 )
 script = ExtResource( 54 )
@@ -407,7 +406,7 @@ __meta__ = {
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2( 0.707123, 511.945 )
 color = Color( 0.811765, 0.588235, 0, 1 )
-polygon = PoolVector2Array( -407.119, -251.763, 1483.81, -252.865, 1672.88, 2724.24, 792.881, 2692.24, -407.119, 2724.24, -375.119, 132.237 )
+polygon = PoolVector2Array( -409.544, -255.907, 1493.51, -256.569, 1672.88, 2724.24, 792.881, 2692.24, -407.119, 2724.24, -375.119, 132.237 )
 
 [node name="EffectQuestion" type="CheckBox" parent="."]
 margin_right = 24.0
