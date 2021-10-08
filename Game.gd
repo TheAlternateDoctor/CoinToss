@@ -4,6 +4,10 @@ extends Node2D
 # TODO:
 # Effects! Swing, Onbeat/Offbeat, Laugh track(?), MORE COWBELLS
 
+var touchOS = ["Android", "iOS", "BlackBerry 10"]
+var keyOS = ["Windows", "X11", "OSX", "HTML5"]
+var os
+
 var thrown:bool = false
 var cowbell:bool = true
 
@@ -38,6 +42,13 @@ func _ready():
 		return # Error! We don't have a save to load.
 	save_game.open("user://record.save", File.READ)
 	emit_signal("update_record",save_game.get_8())
+	os = OS.get_name()
+	if touchOS.find(os) >= 0:
+		#$Instructions.rect_position = Vector2(71,98)
+		$Instructions.text = "Flick it!"
+	elif keyOS.find(os) >= 0:
+		#$Instructions.rect_position = Vector2(59,98)
+		$Instructions.text = "Press Space!"
 	save_game.close()
 
 
@@ -100,6 +111,12 @@ func _unhandled_input(event):
 
 func handleInput(type):
 	if not thrown and type != "touch":
+		if touchOS.find(os) >= 0 and $Instructions.visible:
+			#$Instructions.rect_position = Vector2(26,98)
+			$Instructions.text = "Tap to catch the coin."
+		elif keyOS.find(os) >= 0 and $Instructions.visible:
+			#$Instructions.rect_position = Vector2(29,81)
+			$Instructions.text = "Use Space again\nto catch the coin."
 		$EffectQuestion.visible = false
 		$EffectQuestion.disabled = true
 		$Effect.text = effectsName[effect]
@@ -117,6 +134,8 @@ func handleInput(type):
 			cowbell = false
 		emit_signal("throw",step)
 		thrown = true
+		yield(get_tree().create_timer(2), "timeout")
+		$Instructions.visible = false
 	elif thrown and type != "flick":
 		if not gotInput:
 			gotInput = true

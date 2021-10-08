@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/startDrum.wav-97b4caea6ad6c5cb7e2fd4857fd6e340.sample"
+
+[deps]
+
+source_file="res://resources/sounds/startDrum.wav"
+dest_files=[ "res://.import/startDrum.wav-97b4caea6ad6c5cb7e2fd4857fd6e340.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

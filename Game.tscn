@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://resources/textures/hand_idle_coin.png" type="Texture" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=2]
@@ -59,6 +59,7 @@
 [ext_resource path="res://resources/sounds/laughtrack3.wav" type="AudioStream" id=57]
 [ext_resource path="res://resources/sounds/laughtrack2.wav" type="AudioStream" id=58]
 [ext_resource path="res://resources/sounds/catch.tres" type="AudioStream" id=59]
+[ext_resource path="res://resources/sounds/startDrum.wav" type="AudioStream" id=61]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -77,11 +78,6 @@ animations = [ {
 "name": "throw",
 "speed": 60.0
 }, {
-"frames": [ ExtResource( 16 ), ExtResource( 14 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 15 ) ],
-"loop": false,
-"name": "catch",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "startCatch",
@@ -91,6 +87,11 @@ animations = [ {
 "loop": true,
 "name": "failCatch",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ), ExtResource( 14 ), ExtResource( 18 ), ExtResource( 17 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "catch",
+"speed": 60.0
 } ]
 
 [sub_resource type="Animation" id=2]
@@ -148,16 +149,6 @@ tracks/1/keys = {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 23 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 21 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 24 ) ],
 "loop": true,
 "name": "1",
@@ -167,20 +158,20 @@ animations = [ {
 "loop": true,
 "name": "3",
 "speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ ExtResource( 29 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
 }, {
-"frames": [ ExtResource( 35 ) ],
+"frames": [ ExtResource( 21 ) ],
 "loop": true,
 "name": "2",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
 "frames": [ ExtResource( 34 ) ],
 "loop": true,
 "name": "1",
@@ -196,9 +187,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 30 ) ],
+"frames": [ ExtResource( 35 ) ],
 "loop": true,
-"name": "5",
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 29 ) ],
+"loop": true,
+"name": "0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 31 ) ],
@@ -206,14 +202,19 @@ animations = [ {
 "name": "7",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 26 ) ],
 "loop": true,
 "name": "6",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 28 ) ],
+"frames": [ ExtResource( 30 ) ],
 "loop": true,
-"name": "9",
+"name": "5",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 27 ) ],
@@ -226,16 +227,6 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ ExtResource( 41 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 43 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 42 ) ],
 "loop": true,
 "name": "1",
@@ -251,9 +242,14 @@ animations = [ {
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 46 ) ],
+"frames": [ ExtResource( 43 ) ],
 "loop": true,
-"name": "5",
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 41 ) ],
+"loop": true,
+"name": "0",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 50 ) ],
@@ -261,14 +257,19 @@ animations = [ {
 "name": "7",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 40 ) ],
+"loop": true,
+"name": "9",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 49 ) ],
 "loop": true,
 "name": "6",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 40 ) ],
+"frames": [ ExtResource( 46 ) ],
 "loop": true,
-"name": "9",
+"name": "5",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 48 ) ],
@@ -318,6 +319,10 @@ laugh2 = ExtResource( 58 )
 laugh3 = ExtResource( 57 )
 laugh4 = ExtResource( 56 )
 
+[node name="startDrum" type="AudioStreamPlayer" parent="beat"]
+stream = ExtResource( 61 )
+volume_db = -10.0
+
 [node name="Catch" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 94.2922, 0 )
 stream = ExtResource( 4 )
@@ -327,7 +332,8 @@ catch_cheer = ExtResource( 4 )
 fail = ExtResource( 5 )
 
 [node name="CoinFail" type="Sprite" parent="."]
-position = Vector2( 60.5612, 274.7 )
+visible = false
+position = Vector2( 88.3344, 156.583 )
 rotation = 6.28319
 texture = ExtResource( 53 )
 script = ExtResource( 54 )
@@ -404,7 +410,7 @@ __meta__ = {
 }
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( 0.707123, 511.945 )
+position = Vector2( 0.707123, 511.384 )
 color = Color( 0.811765, 0.588235, 0, 1 )
 polygon = PoolVector2Array( -409.544, -255.907, 1493.51, -256.569, 1672.88, 2724.24, 792.881, 2692.24, -407.119, 2724.24, -375.119, 132.237 )
 
@@ -426,24 +432,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Debug" type="Label" parent="."]
-visible = false
-margin_left = 145.497
-margin_top = 237.601
-margin_right = 185.497
-margin_bottom = 251.601
+[node name="Instructions" type="Label" parent="."]
+margin_left = 29.6003
+margin_top = 81.0729
+margin_right = 166.6
+margin_bottom = 112.073
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Debug"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="catch" from="." to="Catch" method="_on_Game_catch"]
 [connection signal="catch" from="." to="Screen" method="_on_Game_catch"]
 [connection signal="catch" from="." to="ScoreBox" method="_on_Game_catch"]
 [connection signal="catch" from="." to="Hand" method="_on_Game_catch"]
-[connection signal="catch" from="." to="Catch" method="_on_Game_catch"]
+[connection signal="catch_fail" from="." to="Catch" method="_on_Game_catch_fail"]
 [connection signal="catch_fail" from="." to="CoinFail" method="_on_Game_catch_fail"]
 [connection signal="catch_fail" from="." to="Hand" method="_on_Game_catch_fail"]
-[connection signal="catch_fail" from="." to="Catch" method="_on_Game_catch_fail"]
 [connection signal="throw" from="." to="Screen" method="_on_Game_throw"]
 [connection signal="throw" from="." to="Hand" method="_on_Game_throw"]
 [connection signal="update_record" from="." to="ScoreBox" method="_on_Game_update_record"]

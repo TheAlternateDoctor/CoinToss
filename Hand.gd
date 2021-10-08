@@ -66,5 +66,9 @@ func _on_Game_catch_fail():
 	$Animations.playback_speed = 1
 	$Animations.play("Search")
 	yield(get_tree().create_timer(0.5), "timeout")
+	get_node("../Coin").stream = load("res://resources/sounds/grab.wav")
+	get_node("../Coin").play()
 	animation = "idle"
+	yield(get_tree().create_timer(0.5), "timeout")
+	get_node("../Coin").stream = load("res://resources/sounds/flick.tres")
 	

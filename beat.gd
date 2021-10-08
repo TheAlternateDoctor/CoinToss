@@ -76,8 +76,12 @@ func playBeat(bpm, level, effect):
 			newStep = step
 			laugh = true
 	if not laugh:
+		var start = true
 		emit_signal("changeTheme",false)
 		for i in range(1,7):
+			if start and not cowbellEffect:
+				$startDrum.play()
+				start = false
 			if cowbellEffect:
 				stream = cowbell
 			elif i % 2:
